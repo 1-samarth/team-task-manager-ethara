@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="loadDashboard()">
+  <nav>
+    <h2>Task Manager Dashboard</h2>
+    <button onclick="logout()">Logout</button>
+  </nav>
+
+  <main>
+    <section class="cards">
+      <div class="card"><h3>Total</h3><p id="total">0</p></div>
+      <div class="card"><h3>Todo</h3><p id="todo">0</p></div>
+      <div class="card"><h3>Progress</h3><p id="progress">0</p></div>
+      <div class="card"><h3>Done</h3><p id="done">0</p></div>
+      <div class="card danger"><h3>Overdue</h3><p id="overdue">0</p></div>
+    </section>
+
+    <section class="grid">
+      <div class="panel admin-only">
+        <h3>Create Project</h3>
+        <input id="projectTitle" placeholder="Project title" />
+        <textarea id="projectDesc" placeholder="Project description"></textarea>
+        <button onclick="createProject()">Save Project</button>
+      </div>
+
+      <div class="panel admin-only">
+        <h3>Create Task</h3>
+        <input id="taskTitle" placeholder="Task title" />
+        <textarea id="taskDesc" placeholder="Task description"></textarea>
+        <select id="projectSelect"></select>
+        <select id="userSelect"></select>
+        <input id="dueDate" type="date" />
+        <button onclick="createTask()">Assign Task</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>My / All Tasks</h3>
+      <div id="taskList"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

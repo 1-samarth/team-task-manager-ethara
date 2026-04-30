@@ -1,0 +1,21 @@
+# Maven
+target/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Environment files (IMPORTANT)
+.env
+.env.*
+
+# Node (future use)
+node_modules/
+
+# Build
+dist/
