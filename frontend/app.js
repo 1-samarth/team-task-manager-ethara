@@ -1,19 +1,54 @@
-// 🔥 Backend URL (CHANGE ONLY THIS FOR LIVE)
-const BASE_URL = "https://team-task-manager-ethara-production.up.railway.app";
+// ================= CONFIG =================
 
-// fallback + override option
-function apiBase() {
-  return localStorage.getItem("apiUrl") || BASE_URL;
+// 🔥 Backend URL (Railway)
+const BASE_URL =
+  localStorage.getItem("apiUrl") ||
+  "https://team-task-manager-ethara-production.up.railway.app";
+
+// ================= HELPERS =================
+
+function getToken() {
+  return localStorage.getItem("token");
 }
 
 function authHeaders() {
+  const token = getToken();
+
   return {
     "Content-Type": "application/json",
-    "Authorization": "Bearer " + localStorage.getItem("token")
+    ...(token ? { Authorization: "Bearer " + token } : {})
   };
 }
 
-// ---------------- AUTH ----------------
+// ================= SAFE FETCH (IMPROVED) =================
+
+async function safeFetch(url, options = {}) {
+  try {
+    const res = await fetch(url, options);
+
+    const contentType = res.headers.get("content-type");
+
+    let data;
+
+    if (contentType && contentType.includes("application/json")) {
+      data = await res.json();
+    } else {
+      data = await res.text();
+    }
+
+    if (!res.ok) {
+      throw new Error(data?.message || data || "API Error");
+    }
+
+    return data;
+  } catch (err) {
+    console.error("API Error:", err.message);
+    alert(err.message);
+    return null;
+  }
+}
+
+// ================= AUTH =================
 
 function showLogin() {
   document.getElementById("loginForm").classList.remove("hidden");
@@ -33,13 +68,13 @@ async function signup() {
     role: document.getElementById("signupRole").value
   };
 
-  const res = await fetch(apiBase() + "/api/auth/signup", {
+  const data = await safeFetch(`${BASE_URL}/api/auth/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body)
   });
 
-  handleAuthResponse(res);
+  if (data) handleAuthResponse(data);
 }
 
 async function login() {
@@ -48,26 +83,24 @@ async function login() {
     password: document.getElementById("loginPassword").value
   };
 
-  const res = await fetch(apiBase() + "/api/auth/login", {
+  const data = await safeFetch(`${BASE_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body)
   });
 
-  handleAuthResponse(res);
+  if (data) handleAuthResponse(data);
 }
 
-async function handleAuthResponse(res) {
-  if (!res.ok) {
-    document.getElementById("message").innerText = await res.text();
+function handleAuthResponse(data) {
+  if (!data || !data.token) {
+    alert("Login failed: invalid response");
     return;
   }
 
-  const data = await res.json();
-
   localStorage.setItem("token", data.token);
-  localStorage.setItem("role", data.role);
-  localStorage.setItem("name", data.name);
+  localStorage.setItem("role", data.role || "MEMBER");
+  localStorage.setItem("name", data.name || "");
 
   window.location.href = "dashboard.html";
 }
@@ -77,10 +110,10 @@ function logout() {
   window.location.href = "index.html";
 }
 
-// ---------------- DASHBOARD ----------------
+// ================= DASHBOARD =================
 
 async function loadDashboard() {
-  if (!localStorage.getItem("token")) {
+  if (!getToken()) {
     window.location.href = "index.html";
     return;
   }
@@ -88,7 +121,9 @@ async function loadDashboard() {
   const role = localStorage.getItem("role");
 
   if (role !== "ADMIN") {
-    document.querySelectorAll(".admin-only").forEach(e => e.style.display = "none");
+    document.querySelectorAll(".admin-only").forEach(e => {
+      e.style.display = "none";
+    });
   }
 
   await loadStats();
@@ -97,50 +132,47 @@ async function loadDashboard() {
   await loadTasks();
 }
 
-// ---------------- STATS ----------------
+// ================= STATS =================
 
 async function loadStats() {
-  const res = await fetch(apiBase() + "/api/tasks/dashboard", {
+  const data = await safeFetch(`${BASE_URL}/api/tasks/dashboard`, {
     headers: authHeaders()
   });
 
-  const data = await res.json();
+  if (!data) return;
 
-  document.getElementById("total").innerText = data.total;
-  document.getElementById("todo").innerText = data.todo;
-  document.getElementById("progress").innerText = data.inProgress;
-  document.getElementById("done").innerText = data.done;
-  document.getElementById("overdue").innerText = data.overdue;
+  document.getElementById("total").innerText = data.total || 0;
+  document.getElementById("todo").innerText = data.todo || 0;
+  document.getElementById("progress").innerText = data.inProgress || 0;
+  document.getElementById("done").innerText = data.done || 0;
+  document.getElementById("overdue").innerText = data.overdue || 0;
 }
 
-// ---------------- PROJECT ----------------
+// ================= PROJECTS =================
 
 async function loadProjects() {
-  const res = await fetch(apiBase() + "/api/projects", {
+  const projects = await safeFetch(`${BASE_URL}/api/projects`, {
     headers: authHeaders()
   });
 
-  const projects = await res.json();
+  if (!projects) return;
 
   const select = document.getElementById("projectSelect");
-
   if (!select) return;
 
-  select.innerHTML = projects.map(p =>
-    `<option value="${p.id}">${p.title}</option>`
-  ).join("");
+  select.innerHTML = projects
+    .map(p => `<option value="${p.id}">${p.title}</option>`)
+    .join("");
 }
 
 async function createProject() {
-  const body = {
-    title: document.getElementById("projectTitle").value,
-    description: document.getElementById("projectDesc").value
-  };
-
-  await fetch(apiBase() + "/api/projects", {
+  await safeFetch(`${BASE_URL}/api/projects`, {
     method: "POST",
     headers: authHeaders(),
-    body: JSON.stringify(body)
+    body: JSON.stringify({
+      title: document.getElementById("projectTitle").value,
+      description: document.getElementById("projectDesc").value
+    })
   });
 
   document.getElementById("projectTitle").value = "";
@@ -149,39 +181,36 @@ async function createProject() {
   await loadProjects();
 }
 
-// ---------------- USERS ----------------
+// ================= USERS =================
 
 async function loadUsers() {
-  const res = await fetch(apiBase() + "/api/users", {
+  const users = await safeFetch(`${BASE_URL}/api/users`, {
     headers: authHeaders()
   });
 
-  const users = await res.json();
+  if (!users) return;
 
   const select = document.getElementById("userSelect");
-
   if (!select) return;
 
-  select.innerHTML = users.map(u =>
-    `<option value="${u.id}">${u.name} (${u.role})</option>`
-  ).join("");
+  select.innerHTML = users
+    .map(u => `<option value="${u.id}">${u.name} (${u.role})</option>`)
+    .join("");
 }
 
-// ---------------- TASK ----------------
+// ================= TASKS =================
 
 async function createTask() {
-  const body = {
-    title: document.getElementById("taskTitle").value,
-    description: document.getElementById("taskDesc").value,
-    projectId: document.getElementById("projectSelect").value,
-    assignedToId: document.getElementById("userSelect").value,
-    dueDate: document.getElementById("dueDate").value
-  };
-
-  await fetch(apiBase() + "/api/tasks", {
+  await safeFetch(`${BASE_URL}/api/tasks`, {
     method: "POST",
     headers: authHeaders(),
-    body: JSON.stringify(body)
+    body: JSON.stringify({
+      title: document.getElementById("taskTitle").value,
+      description: document.getElementById("taskDesc").value,
+      projectId: document.getElementById("projectSelect").value,
+      assignedToId: document.getElementById("userSelect").value,
+      dueDate: document.getElementById("dueDate").value
+    })
   });
 
   await loadStats();
@@ -189,33 +218,40 @@ async function createTask() {
 }
 
 async function loadTasks() {
-  const res = await fetch(apiBase() + "/api/tasks", {
+  const tasks = await safeFetch(`${BASE_URL}/api/tasks`, {
     headers: authHeaders()
   });
 
-  const tasks = await res.json();
+  if (!tasks) return;
 
   const box = document.getElementById("taskList");
+  if (!box) return;
 
-  box.innerHTML = tasks.map(t => `
+  box.innerHTML = tasks
+    .map(
+      t => `
     <div class="task">
       <h4>${t.title}</h4>
       <p>${t.description || "No description"}</p>
+
       <span class="badge">${t.status}</span>
       <span class="badge">Due: ${t.dueDate || "No date"}</span>
-      <p>Assigned to: ${t.assignedTo.name}</p>
+
+      <p>Assigned to: ${t.assignedTo?.name || "Unassigned"}</p>
 
       <select onchange="updateTaskStatus(${t.id}, this.value)">
-        <option ${t.status === "TODO" ? "selected" : ""}>TODO</option>
-        <option ${t.status === "IN_PROGRESS" ? "selected" : ""}>IN_PROGRESS</option>
-        <option ${t.status === "DONE" ? "selected" : ""}>DONE</option>
+        <option value="TODO" ${t.status === "TODO" ? "selected" : ""}>TODO</option>
+        <option value="IN_PROGRESS" ${t.status === "IN_PROGRESS" ? "selected" : ""}>IN_PROGRESS</option>
+        <option value="DONE" ${t.status === "DONE" ? "selected" : ""}>DONE</option>
       </select>
     </div>
-  `).join("");
+  `
+    )
+    .join("");
 }
 
 async function updateTaskStatus(id, status) {
-  await fetch(apiBase() + `/api/tasks/${id}/status`, {
+  await safeFetch(`${BASE_URL}/api/tasks/${id}/status`, {
     method: "PUT",
     headers: authHeaders(),
     body: JSON.stringify({ status })
