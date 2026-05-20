@@ -1,42 +1,191 @@
+<!-- ============================ index.html ============================ -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Team Task Manager</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="auth-box">
-    <h1>Team Task Manager</h1>
-    <p>Login or signup to manage projects and tasks</p>
 
-    <input id="apiUrl" placeholder="Backend URL e.g. http://localhost:8080" value="http://localhost:8080" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Team Task Manager</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+
+  <!-- ================= AUTH BOX ================= -->
+
+  <div class="auth-box">
+
+    <!-- LOGO -->
+
+    <div class="logo-circle">
+      🚀
+    </div>
+
+    <!-- TITLE -->
+
+    <h1>Team Task Manager</h1>
+
+    <p>
+      Organize projects, assign tasks and collaborate
+      with your team efficiently.
+    </p>
+
+    <!-- API URL -->
+
+    <div class="input-group">
+
+      <label>Backend URL</label>
+
+      <input
+        id="apiUrl"
+        placeholder="Backend URL"
+        value="http://localhost:8080"
+      />
+
+    </div>
+
+    <!-- TABS -->
 
     <div class="tabs">
-      <button onclick="showLogin()">Login</button>
-      <button onclick="showSignup()">Signup</button>
+
+      <button onclick="showLogin()">
+        Login
+      </button>
+
+      <button onclick="showSignup()">
+        Signup
+      </button>
+
     </div>
+
+    <!-- ================= LOGIN FORM ================= -->
 
     <div id="loginForm">
-      <input id="loginEmail" type="email" placeholder="Email" />
-      <input id="loginPassword" type="password" placeholder="Password" />
-      <button onclick="login()">Login</button>
+
+      <div class="input-group">
+
+        <label>Email Address</label>
+
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="Enter your email"
+        />
+
+      </div>
+
+      <div class="input-group">
+
+        <label>Password</label>
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Enter your password"
+        />
+
+      </div>
+
+      <button onclick="login()">
+        Login
+      </button>
+
     </div>
+
+    <!-- ================= SIGNUP FORM ================= -->
 
     <div id="signupForm" class="hidden">
-      <input id="signupName" placeholder="Full Name" />
-      <input id="signupEmail" type="email" placeholder="Email" />
-      <input id="signupPassword" type="password" placeholder="Password minimum 6 chars" />
-      <select id="signupRole">
-        <option value="MEMBER">MEMBER</option>
-        <option value="ADMIN">ADMIN</option>
-      </select>
-      <button onclick="signup()">Create Account</button>
+
+      <div class="input-group">
+
+        <label>Full Name</label>
+
+        <input
+          id="signupName"
+          placeholder="Enter your full name"
+        />
+
+      </div>
+
+      <div class="input-group">
+
+        <label>Email Address</label>
+
+        <input
+          id="signupEmail"
+          type="email"
+          placeholder="Enter your email"
+        />
+
+      </div>
+
+      <div class="input-group">
+
+        <label>Password</label>
+
+        <input
+          id="signupPassword"
+          type="password"
+          placeholder="Minimum 6 characters"
+        />
+
+      </div>
+
+      <div class="input-group">
+
+        <label>Select Role</label>
+
+        <select id="signupRole">
+
+          <option value="MEMBER">
+            MEMBER
+          </option>
+
+          <option value="ADMIN">
+            ADMIN
+          </option>
+
+        </select>
+
+      </div>
+
+      <button onclick="signup()">
+        Create Account
+      </button>
+
     </div>
 
+    <!-- MESSAGE -->
+
     <p id="message"></p>
+
   </div>
+
+  <!-- JS -->
   <script src="app.js"></script>
+
 </body>
+
 </html>

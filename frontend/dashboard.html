@@ -1,50 +1,265 @@
+<!-- ============================ dashboard.html ============================ -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>Dashboard</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
 </head>
+
 <body onload="loadDashboard()">
+
+  <!-- ================= NAVBAR ================= -->
+
   <nav>
-    <h2>Task Manager Dashboard</h2>
-    <button onclick="logout()">Logout</button>
+
+    <div class="nav-left">
+
+      <h2>
+        🚀 Team Task Manager
+      </h2>
+
+    </div>
+
+    <div class="nav-right">
+
+      <button onclick="logout()">
+        Logout
+      </button>
+
+    </div>
+
   </nav>
 
+  <!-- ================= MAIN ================= -->
+
   <main>
-    <section class="cards">
-      <div class="card"><h3>Total</h3><p id="total">0</p></div>
-      <div class="card"><h3>Todo</h3><p id="todo">0</p></div>
-      <div class="card"><h3>Progress</h3><p id="progress">0</p></div>
-      <div class="card"><h3>Done</h3><p id="done">0</p></div>
-      <div class="card danger"><h3>Overdue</h3><p id="overdue">0</p></div>
+
+    <!-- ================= WELCOME ================= -->
+
+    <section class="welcome">
+
+      <h1>
+        Welcome Back 👋
+      </h1>
+
+      <p>
+        Track team productivity, manage projects
+        and monitor all tasks from one dashboard.
+      </p>
+
     </section>
+
+    <!-- ================= STATS CARDS ================= -->
+
+    <section class="cards">
+
+      <div class="card">
+
+        <h3>Total Tasks</h3>
+
+        <p id="total">0</p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Todo</h3>
+
+        <p id="todo">0</p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>In Progress</h3>
+
+        <p id="progress">0</p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Completed</h3>
+
+        <p id="done">0</p>
+
+      </div>
+
+      <div class="card danger">
+
+        <h3>Overdue</h3>
+
+        <p id="overdue">0</p>
+
+      </div>
+
+    </section>
+
+    <!-- ================= ADMIN GRID ================= -->
 
     <section class="grid">
-      <div class="panel admin-only">
-        <h3>Create Project</h3>
-        <input id="projectTitle" placeholder="Project title" />
-        <textarea id="projectDesc" placeholder="Project description"></textarea>
-        <button onclick="createProject()">Save Project</button>
-      </div>
+
+      <!-- CREATE PROJECT -->
 
       <div class="panel admin-only">
-        <h3>Create Task</h3>
-        <input id="taskTitle" placeholder="Task title" />
-        <textarea id="taskDesc" placeholder="Task description"></textarea>
-        <select id="projectSelect"></select>
-        <select id="userSelect"></select>
-        <input id="dueDate" type="date" />
-        <button onclick="createTask()">Assign Task</button>
+
+        <div class="panel-title">
+
+          <h3>Create Project</h3>
+
+        </div>
+
+        <div class="input-group">
+
+          <label>Project Title</label>
+
+          <input
+            id="projectTitle"
+            placeholder="Enter project title"
+          />
+
+        </div>
+
+        <div class="input-group">
+
+          <label>Project Description</label>
+
+          <textarea
+            id="projectDesc"
+            placeholder="Enter project description"
+          ></textarea>
+
+        </div>
+
+        <button onclick="createProject()">
+          Save Project
+        </button>
+
       </div>
+
+      <!-- CREATE TASK -->
+
+      <div class="panel admin-only">
+
+        <div class="panel-title">
+
+          <h3>Create Task</h3>
+
+        </div>
+
+        <div class="input-group">
+
+          <label>Task Title</label>
+
+          <input
+            id="taskTitle"
+            placeholder="Enter task title"
+          />
+
+        </div>
+
+        <div class="input-group">
+
+          <label>Task Description</label>
+
+          <textarea
+            id="taskDesc"
+            placeholder="Enter task description"
+          ></textarea>
+
+        </div>
+
+        <div class="input-group">
+
+          <label>Select Project</label>
+
+          <select id="projectSelect"></select>
+
+        </div>
+
+        <div class="input-group">
+
+          <label>Assign User</label>
+
+          <select id="userSelect"></select>
+
+        </div>
+
+        <div class="input-group">
+
+          <label>Due Date</label>
+
+          <input
+            id="dueDate"
+            type="date"
+          />
+
+        </div>
+
+        <button onclick="createTask()">
+          Assign Task
+        </button>
+
+      </div>
+
     </section>
 
-    <section class="panel">
-      <h3>My / All Tasks</h3>
+    <!-- ================= TASK LIST ================= -->
+
+    <section class="panel task-panel">
+
+      <div class="section-header">
+
+        <div>
+
+          <h3>
+            My / All Tasks
+          </h3>
+
+          <p>
+            View, update and manage assigned tasks.
+          </p>
+
+        </div>
+
+      </div>
+
       <div id="taskList"></div>
+
     </section>
+
   </main>
+
+  <!-- JS -->
   <script src="app.js"></script>
+
 </body>
+
 </html>
