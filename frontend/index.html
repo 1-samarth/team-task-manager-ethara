@@ -157,11 +157,17 @@
 
         <div class="tabs">
 
-          <button onclick="showLogin()">
+          <button
+            type="button"
+            onclick="showLogin()"
+          >
             Login
           </button>
 
-          <button onclick="showSignup()">
+          <button
+            type="button"
+            onclick="showSignup()"
+          >
             Signup
           </button>
 
@@ -169,7 +175,10 @@
 
         <!-- ================= LOGIN FORM ================= -->
 
-        <div id="loginForm">
+        <form
+          id="loginForm"
+          autocomplete="off"
+        >
 
           <div class="input-box">
 
@@ -181,6 +190,8 @@
               id="loginEmail"
               type="email"
               placeholder="Enter your email"
+              autocomplete="off"
+              spellcheck="false"
             />
 
           </div>
@@ -195,22 +206,28 @@
               id="loginPassword"
               type="password"
               placeholder="Enter your password"
+              autocomplete="new-password"
             />
 
           </div>
 
           <button
+            type="button"
             class="primary-btn"
             onclick="login()"
           >
             Login Account
           </button>
 
-        </div>
+        </form>
 
         <!-- ================= SIGNUP FORM ================= -->
 
-        <div id="signupForm" class="hidden">
+        <form
+          id="signupForm"
+          class="hidden"
+          autocomplete="off"
+        >
 
           <div class="input-box">
 
@@ -221,6 +238,8 @@
             <input
               id="signupName"
               placeholder="Enter your full name"
+              autocomplete="off"
+              spellcheck="false"
             />
 
           </div>
@@ -235,6 +254,8 @@
               id="signupEmail"
               type="email"
               placeholder="Enter your email"
+              autocomplete="off"
+              spellcheck="false"
             />
 
           </div>
@@ -249,6 +270,7 @@
               id="signupPassword"
               type="password"
               placeholder="Minimum 6 characters"
+              autocomplete="new-password"
             />
 
           </div>
@@ -259,7 +281,10 @@
               Select Role
             </label>
 
-            <select id="signupRole">
+            <select
+              id="signupRole"
+              autocomplete="off"
+            >
 
               <option value="MEMBER">
                 MEMBER
@@ -274,13 +299,14 @@
           </div>
 
           <button
+            type="button"
             class="primary-btn"
             onclick="signup()"
           >
             Create Account
           </button>
 
-        </div>
+        </form>
 
         <!-- MESSAGE -->
 
