@@ -1,9 +1,8 @@
-<!-- ============================ index.html ============================ -->
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8" />
 
   <meta
@@ -16,170 +15,280 @@
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
     rel="preconnect"
     href="https://fonts.gstatic.com"
     crossorigin
-  />
+  >
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
+
 </head>
 
 <body>
 
-  <!-- ================= AUTH BOX ================= -->
+  <!-- ================= BACKGROUND EFFECTS ================= -->
 
-  <div class="auth-box">
+  <div class="bg-blur blur-1"></div>
+  <div class="bg-blur blur-2"></div>
 
-    <!-- LOGO -->
+  <!-- ================= MAIN CONTAINER ================= -->
 
-    <div class="logo-circle">
-      🚀
-    </div>
+  <div class="login-container">
 
-    <!-- TITLE -->
+    <!-- ================= LEFT SIDE ================= -->
 
-    <h1>Team Task Manager</h1>
+    <div class="left-panel">
 
-    <p>
-      Organize projects, assign tasks and collaborate
-      with your team efficiently.
-    </p>
+      <div class="brand">
 
-    <!-- API URL -->
+        <div class="brand-icon">
+          🚀
+        </div>
 
-    <div class="input-group">
+        <h1>
+          Team Task Manager
+        </h1>
 
-      <label>Backend URL</label>
-
-      <input
-        id="apiUrl"
-        placeholder="Backend URL"
-        value="http://localhost:8080"
-      />
-
-    </div>
-
-    <!-- TABS -->
-
-    <div class="tabs">
-
-      <button onclick="showLogin()">
-        Login
-      </button>
-
-      <button onclick="showSignup()">
-        Signup
-      </button>
-
-    </div>
-
-    <!-- ================= LOGIN FORM ================= -->
-
-    <div id="loginForm">
-
-      <div class="input-group">
-
-        <label>Email Address</label>
-
-        <input
-          id="loginEmail"
-          type="email"
-          placeholder="Enter your email"
-        />
+        <p>
+          Organize projects, manage team productivity,
+          assign tasks and monitor progress with a
+          next-generation collaboration dashboard.
+        </p>
 
       </div>
 
-      <div class="input-group">
+      <!-- FEATURES -->
 
-        <label>Password</label>
+      <div class="feature-list">
 
-        <input
-          id="loginPassword"
-          type="password"
-          placeholder="Enter your password"
-        />
+        <div class="feature-card">
 
-      </div>
+          <span>⚡</span>
 
-      <button onclick="login()">
-        Login
-      </button>
+          <div>
 
-    </div>
+            <h3>
+              Smart Task Management
+            </h3>
 
-    <!-- ================= SIGNUP FORM ================= -->
+            <p>
+              Manage and track tasks efficiently.
+            </p>
 
-    <div id="signupForm" class="hidden">
+          </div>
 
-      <div class="input-group">
+        </div>
 
-        <label>Full Name</label>
+        <div class="feature-card">
 
-        <input
-          id="signupName"
-          placeholder="Enter your full name"
-        />
+          <span>📊</span>
 
-      </div>
+          <div>
 
-      <div class="input-group">
+            <h3>
+              Analytics Dashboard
+            </h3>
 
-        <label>Email Address</label>
+            <p>
+              Real-time productivity insights.
+            </p>
 
-        <input
-          id="signupEmail"
-          type="email"
-          placeholder="Enter your email"
-        />
+          </div>
 
-      </div>
+        </div>
 
-      <div class="input-group">
+        <div class="feature-card">
 
-        <label>Password</label>
+          <span>👥</span>
 
-        <input
-          id="signupPassword"
-          type="password"
-          placeholder="Minimum 6 characters"
-        />
+          <div>
 
-      </div>
+            <h3>
+              Team Collaboration
+            </h3>
 
-      <div class="input-group">
+            <p>
+              Collaborate seamlessly with teams.
+            </p>
 
-        <label>Select Role</label>
+          </div>
 
-        <select id="signupRole">
-
-          <option value="MEMBER">
-            MEMBER
-          </option>
-
-          <option value="ADMIN">
-            ADMIN
-          </option>
-
-        </select>
+        </div>
 
       </div>
-
-      <button onclick="signup()">
-        Create Account
-      </button>
 
     </div>
 
-    <!-- MESSAGE -->
+    <!-- ================= RIGHT SIDE ================= -->
 
-    <p id="message"></p>
+    <div class="right-panel">
+
+      <div class="auth-card">
+
+        <!-- TOP BADGE -->
+
+        <div class="top-badge">
+
+          Modern Productivity Platform
+
+        </div>
+
+        <!-- TITLE -->
+
+        <h2>
+          Welcome Back 👋
+        </h2>
+
+        <p class="sub-text">
+
+          Login or create your account to continue
+          managing your team tasks and projects.
+
+        </p>
+
+        <!-- TABS -->
+
+        <div class="tabs">
+
+          <button onclick="showLogin()">
+            Login
+          </button>
+
+          <button onclick="showSignup()">
+            Signup
+          </button>
+
+        </div>
+
+        <!-- ================= LOGIN FORM ================= -->
+
+        <div id="loginForm">
+
+          <div class="input-box">
+
+            <label>
+              Email Address
+            </label>
+
+            <input
+              id="loginEmail"
+              type="email"
+              placeholder="Enter your email"
+            />
+
+          </div>
+
+          <div class="input-box">
+
+            <label>
+              Password
+            </label>
+
+            <input
+              id="loginPassword"
+              type="password"
+              placeholder="Enter your password"
+            />
+
+          </div>
+
+          <button
+            class="primary-btn"
+            onclick="login()"
+          >
+            Login Account
+          </button>
+
+        </div>
+
+        <!-- ================= SIGNUP FORM ================= -->
+
+        <div id="signupForm" class="hidden">
+
+          <div class="input-box">
+
+            <label>
+              Full Name
+            </label>
+
+            <input
+              id="signupName"
+              placeholder="Enter your full name"
+            />
+
+          </div>
+
+          <div class="input-box">
+
+            <label>
+              Email Address
+            </label>
+
+            <input
+              id="signupEmail"
+              type="email"
+              placeholder="Enter your email"
+            />
+
+          </div>
+
+          <div class="input-box">
+
+            <label>
+              Password
+            </label>
+
+            <input
+              id="signupPassword"
+              type="password"
+              placeholder="Minimum 6 characters"
+            />
+
+          </div>
+
+          <div class="input-box">
+
+            <label>
+              Select Role
+            </label>
+
+            <select id="signupRole">
+
+              <option value="MEMBER">
+                MEMBER
+              </option>
+
+              <option value="ADMIN">
+                ADMIN
+              </option>
+
+            </select>
+
+          </div>
+
+          <button
+            class="primary-btn"
+            onclick="signup()"
+          >
+            Create Account
+          </button>
+
+        </div>
+
+        <!-- MESSAGE -->
+
+        <p id="message"></p>
+
+      </div>
+
+    </div>
 
   </div>
 

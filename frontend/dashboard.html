@@ -1,5 +1,3 @@
-<!-- ============================ dashboard.html ============================ -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,22 +10,22 @@
     content="width=device-width, initial-scale=1.0"
   />
 
-  <title>Dashboard</title>
+  <title>Team Task Manager Dashboard</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 
   <!-- GOOGLE FONT -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
     rel="preconnect"
     href="https://fonts.gstatic.com"
     crossorigin
-  />
+  >
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
 
@@ -35,86 +33,204 @@
 
 <body onload="loadDashboard()">
 
-  <!-- ================= NAVBAR ================= -->
+  <!-- ================= SIDEBAR ================= -->
 
-  <nav>
+  <aside class="sidebar">
 
-    <div class="nav-left">
+    <div>
 
-      <h2>
-        🚀 Team Task Manager
-      </h2>
+      <!-- LOGO -->
+
+      <div class="logo">
+
+        <div class="logo-icon">
+          🚀
+        </div>
+
+        <div>
+
+          <h2>TM Dashboard</h2>
+
+          <p>Team Productivity</p>
+
+        </div>
+
+      </div>
+
+      <!-- MENU -->
+
+      <ul class="menu">
+
+        <li class="active">
+          <span>📊</span>
+          Dashboard
+        </li>
+
+        <li>
+          <span>📁</span>
+          Projects
+        </li>
+
+        <li>
+          <span>✅</span>
+          Tasks
+        </li>
+
+        <li>
+          <span>📈</span>
+          Analytics
+        </li>
+
+        <li>
+          <span>👥</span>
+          Team
+        </li>
+
+        <li>
+          <span>⚙️</span>
+          Settings
+        </li>
+
+      </ul>
 
     </div>
 
-    <div class="nav-right">
+    <!-- LOGOUT -->
 
-      <button onclick="logout()">
-        Logout
-      </button>
+    <button
+      class="logout-btn"
+      onclick="logout()"
+    >
+      Logout
+    </button>
 
-    </div>
+  </aside>
 
-  </nav>
+  <!-- ================= MAIN CONTENT ================= -->
 
-  <!-- ================= MAIN ================= -->
+  <div class="dashboard-content">
 
-  <main>
+    <!-- ================= TOPBAR ================= -->
 
-    <!-- ================= WELCOME ================= -->
+    <nav class="topbar">
 
-    <section class="welcome">
+      <div>
 
-      <h1>
-        Welcome Back 👋
-      </h1>
+        <h1>
+          Welcome Back 👋
+        </h1>
 
-      <p>
-        Track team productivity, manage projects
-        and monitor all tasks from one dashboard.
-      </p>
+        <p>
+          Manage projects, monitor tasks and track
+          your team productivity in real-time.
+        </p>
 
-    </section>
+      </div>
 
-    <!-- ================= STATS CARDS ================= -->
+      <div class="topbar-right">
 
-    <section class="cards">
+        <div class="search-box">
 
-      <div class="card">
+          <input
+            type="text"
+            placeholder="Search..."
+          />
 
-        <h3>Total Tasks</h3>
+        </div>
+
+        <div class="profile-box">
+
+          <div class="profile-avatar">
+            A
+          </div>
+
+          <div>
+
+            <h4 id="profileName">
+              Admin
+            </h4>
+
+            <p>
+              Team Manager
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+    <!-- ================= STATS ================= -->
+
+    <section class="stats-grid">
+
+      <div class="stats-card blue">
+
+        <div class="stats-top">
+
+          <h3>Total Tasks</h3>
+
+          <span>📋</span>
+
+        </div>
 
         <p id="total">0</p>
 
       </div>
 
-      <div class="card">
+      <div class="stats-card purple">
 
-        <h3>Todo</h3>
+        <div class="stats-top">
+
+          <h3>Todo</h3>
+
+          <span>📝</span>
+
+        </div>
 
         <p id="todo">0</p>
 
       </div>
 
-      <div class="card">
+      <div class="stats-card green">
 
-        <h3>In Progress</h3>
+        <div class="stats-top">
 
-        <p id="progress">0</p>
+          <h3>Completed</h3>
 
-      </div>
+          <span>✅</span>
 
-      <div class="card">
-
-        <h3>Completed</h3>
+        </div>
 
         <p id="done">0</p>
 
       </div>
 
-      <div class="card danger">
+      <div class="stats-card orange">
 
-        <h3>Overdue</h3>
+        <div class="stats-top">
+
+          <h3>In Progress</h3>
+
+          <span>⚡</span>
+
+        </div>
+
+        <p id="progress">0</p>
+
+      </div>
+
+      <div class="stats-card red">
+
+        <div class="stats-top">
+
+          <h3>Overdue</h3>
+
+          <span>🔥</span>
+
+        </div>
 
         <p id="overdue">0</p>
 
@@ -124,21 +240,31 @@
 
     <!-- ================= ADMIN GRID ================= -->
 
-    <section class="grid">
+    <section class="dashboard-grid">
 
       <!-- CREATE PROJECT -->
 
-      <div class="panel admin-only">
+      <div class="modern-panel admin-only">
 
-        <div class="panel-title">
+        <div class="panel-header">
 
-          <h3>Create Project</h3>
+          <div>
+
+            <h2>Create Project</h2>
+
+            <p>
+              Add and organize your team projects
+            </p>
+
+          </div>
 
         </div>
 
-        <div class="input-group">
+        <div class="input-box">
 
-          <label>Project Title</label>
+          <label>
+            Project Title
+          </label>
 
           <input
             id="projectTitle"
@@ -147,13 +273,15 @@
 
         </div>
 
-        <div class="input-group">
+        <div class="input-box">
 
-          <label>Project Description</label>
+          <label>
+            Description
+          </label>
 
           <textarea
             id="projectDesc"
-            placeholder="Enter project description"
+            placeholder="Write project details..."
           ></textarea>
 
         </div>
@@ -166,17 +294,27 @@
 
       <!-- CREATE TASK -->
 
-      <div class="panel admin-only">
+      <div class="modern-panel admin-only">
 
-        <div class="panel-title">
+        <div class="panel-header">
 
-          <h3>Create Task</h3>
+          <div>
+
+            <h2>Create Task</h2>
+
+            <p>
+              Assign and manage team tasks
+            </p>
+
+          </div>
 
         </div>
 
-        <div class="input-group">
+        <div class="input-box">
 
-          <label>Task Title</label>
+          <label>
+            Task Title
+          </label>
 
           <input
             id="taskTitle"
@@ -185,36 +323,44 @@
 
         </div>
 
-        <div class="input-group">
+        <div class="input-box">
 
-          <label>Task Description</label>
+          <label>
+            Task Description
+          </label>
 
           <textarea
             id="taskDesc"
-            placeholder="Enter task description"
+            placeholder="Write task details..."
           ></textarea>
 
         </div>
 
-        <div class="input-group">
+        <div class="input-box">
 
-          <label>Select Project</label>
+          <label>
+            Select Project
+          </label>
 
           <select id="projectSelect"></select>
 
         </div>
 
-        <div class="input-group">
+        <div class="input-box">
 
-          <label>Assign User</label>
+          <label>
+            Assign User
+          </label>
 
           <select id="userSelect"></select>
 
         </div>
 
-        <div class="input-group">
+        <div class="input-box">
 
-          <label>Due Date</label>
+          <label>
+            Due Date
+          </label>
 
           <input
             id="dueDate"
@@ -231,31 +377,33 @@
 
     </section>
 
-    <!-- ================= TASK LIST ================= -->
+    <!-- ================= TASK SECTION ================= -->
 
-    <section class="panel task-panel">
+    <section class="modern-panel task-panel">
 
-      <div class="section-header">
+      <div class="panel-header">
 
         <div>
 
-          <h3>
-            My / All Tasks
-          </h3>
+          <h2>
+            Team Tasks
+          </h2>
 
           <p>
-            View, update and manage assigned tasks.
+            Track and update assigned tasks
           </p>
 
         </div>
 
       </div>
 
+      <!-- TASK LIST -->
+
       <div id="taskList"></div>
 
     </section>
 
-  </main>
+  </div>
 
   <!-- JS -->
   <script src="app.js"></script>
