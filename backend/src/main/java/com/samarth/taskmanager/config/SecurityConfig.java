@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/", "/health").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(tokenAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
