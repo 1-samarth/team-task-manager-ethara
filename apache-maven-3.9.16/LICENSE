@@ -95,7 +95,7 @@ Project URL: https://github.com/google/guava/
 
 
 
-- lib/guava-33.5.0-jre.jar: com.google.guava:guava:bundle:33.5.0-jre
+- lib/guava-33.6.0-jre.jar: com.google.guava:guava:bundle:33.6.0-jre
     Project: Guava: Google Core Libraries for Java
 Project URL: https://github.com/google/guava
     License: Apache License, Version 2.0 (Apache-2.0)
@@ -385,7 +385,7 @@ Project URL: https://codehaus-plexus.github.io/plexus-cipher/
 
 
 
-- boot/plexus-classworlds-2.9.0.jar: org.codehaus.plexus:plexus-classworlds:bundle:2.9.0
+- boot/plexus-classworlds-2.11.0.jar: org.codehaus.plexus:plexus-classworlds:bundle:2.11.0
     Project: Plexus Classworlds
 Project URL: https://codehaus-plexus.github.io/plexus-classworlds/
     License: Apache-2.0 (Apache-2.0)
