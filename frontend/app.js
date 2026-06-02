@@ -586,3 +586,22 @@ async function updateTaskStatus(id, status) {
     await loadTasks();
   }
 }
+async function handleGoogleLogin(response) {
+  const data = await safeFetch(
+    `${BASE_URL}/api/auth/google`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        credential: response.credential
+      })
+    }
+  );
+
+  if (data) {
+    showToast("Google login successful");
+    handleAuthResponse(data);
+  }
+}

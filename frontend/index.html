@@ -12,10 +12,8 @@
 
   <title>Team Task Manager</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- GOOGLE FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
@@ -29,32 +27,24 @@
     rel="stylesheet"
   />
 
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
 </head>
 
 <body>
 
-  <!-- ================= BACKGROUND EFFECTS ================= -->
-
   <div class="bg-blur blur-1"></div>
   <div class="bg-blur blur-2"></div>
 
-  <!-- ================= MAIN CONTAINER ================= -->
-
   <div class="login-container">
-
-    <!-- ================= LEFT SIDE ================= -->
 
     <div class="left-panel">
 
       <div class="brand">
 
-        <div class="brand-icon">
-          🚀
-        </div>
+        <div class="brand-icon">🚀</div>
 
-        <h1>
-          Team Task Manager
-        </h1>
+        <h1>Team Task Manager</h1>
 
         <p>
           Organize projects, manage team productivity,
@@ -64,128 +54,67 @@
 
       </div>
 
-      <!-- FEATURES -->
-
       <div class="feature-list">
 
         <div class="feature-card">
-
           <span>⚡</span>
-
           <div>
-
-            <h3>
-              Smart Task Management
-            </h3>
-
-            <p>
-              Manage and track tasks efficiently.
-            </p>
-
+            <h3>Smart Task Management</h3>
+            <p>Manage and track tasks efficiently.</p>
           </div>
-
         </div>
 
         <div class="feature-card">
-
           <span>📊</span>
-
           <div>
-
-            <h3>
-              Analytics Dashboard
-            </h3>
-
-            <p>
-              Real-time productivity insights.
-            </p>
-
+            <h3>Analytics Dashboard</h3>
+            <p>Real-time productivity insights.</p>
           </div>
-
         </div>
 
         <div class="feature-card">
-
           <span>👥</span>
-
           <div>
-
-            <h3>
-              Team Collaboration
-            </h3>
-
-            <p>
-              Collaborate seamlessly with teams.
-            </p>
-
+            <h3>Team Collaboration</h3>
+            <p>Collaborate seamlessly with teams.</p>
           </div>
-
         </div>
 
       </div>
 
     </div>
 
-    <!-- ================= RIGHT SIDE ================= -->
-
     <div class="right-panel">
 
       <div class="auth-card">
 
-        <!-- TOP BADGE -->
-
         <div class="top-badge">
-
           Modern Productivity Platform
-
         </div>
 
-        <!-- TITLE -->
-
-        <h2>
-          Welcome Back 👋
-        </h2>
+        <h2>Welcome Back 👋</h2>
 
         <p class="sub-text">
-
           Login or create your account to continue
           managing your team tasks and projects.
-
         </p>
-
-        <!-- TABS -->
 
         <div class="tabs">
 
-          <button
-            type="button"
-            onclick="showLogin()"
-          >
+          <button type="button" onclick="showLogin()">
             Login
           </button>
 
-          <button
-            type="button"
-            onclick="showSignup()"
-          >
+          <button type="button" onclick="showSignup()">
             Signup
           </button>
 
         </div>
 
-        <!-- ================= LOGIN FORM ================= -->
-
-        <form
-          id="loginForm"
-          autocomplete="off"
-        >
+        <form id="loginForm" autocomplete="off">
 
           <div class="input-box">
-
-            <label>
-              Email Address
-            </label>
-
+            <label>Email Address</label>
             <input
               id="loginEmail"
               type="email"
@@ -193,22 +122,16 @@
               autocomplete="off"
               spellcheck="false"
             />
-
           </div>
 
           <div class="input-box">
-
-            <label>
-              Password
-            </label>
-
+            <label>Password</label>
             <input
               id="loginPassword"
               type="password"
               placeholder="Enter your password"
               autocomplete="new-password"
             />
-
           </div>
 
           <button
@@ -221,35 +144,20 @@
 
         </form>
 
-        <!-- ================= SIGNUP FORM ================= -->
-
-        <form
-          id="signupForm"
-          class="hidden"
-          autocomplete="off"
-        >
+        <form id="signupForm" class="hidden" autocomplete="off">
 
           <div class="input-box">
-
-            <label>
-              Full Name
-            </label>
-
+            <label>Full Name</label>
             <input
               id="signupName"
               placeholder="Enter your full name"
               autocomplete="off"
               spellcheck="false"
             />
-
           </div>
 
           <div class="input-box">
-
-            <label>
-              Email Address
-            </label>
-
+            <label>Email Address</label>
             <input
               id="signupEmail"
               type="email"
@@ -257,45 +165,24 @@
               autocomplete="off"
               spellcheck="false"
             />
-
           </div>
 
           <div class="input-box">
-
-            <label>
-              Password
-            </label>
-
+            <label>Password</label>
             <input
               id="signupPassword"
               type="password"
               placeholder="Minimum 6 characters"
               autocomplete="new-password"
             />
-
           </div>
 
           <div class="input-box">
-
-            <label>
-              Select Role
-            </label>
-
-            <select
-              id="signupRole"
-              autocomplete="off"
-            >
-
-              <option value="MEMBER">
-                MEMBER
-              </option>
-
-              <option value="ADMIN">
-                ADMIN
-              </option>
-
+            <label>Select Role</label>
+            <select id="signupRole" autocomplete="off">
+              <option value="MEMBER">MEMBER</option>
+              <option value="ADMIN">ADMIN</option>
             </select>
-
           </div>
 
           <button
@@ -308,7 +195,25 @@
 
         </form>
 
-        <!-- MESSAGE -->
+        <div style="margin: 20px 0; text-align: center;">
+          <p style="font-size: 13px; opacity: 0.7;">or continue with</p>
+
+          <div
+            id="g_id_onload"
+            data-client_id="YOUR_GOOGLE_CLIENT_ID"
+            data-callback="handleGoogleLogin"
+          ></div>
+
+          <div
+            class="g_id_signin"
+            data-type="standard"
+            data-size="large"
+            data-theme="outline"
+            data-text="signin_with"
+            data-shape="rectangular"
+            data-logo_alignment="left"
+          ></div>
+        </div>
 
         <p id="message"></p>
 
@@ -318,7 +223,6 @@
 
   </div>
 
-  <!-- JS -->
   <script src="app.js"></script>
 
 </body>
