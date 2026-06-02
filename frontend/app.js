@@ -2,7 +2,7 @@
 
 const BASE_URL =
   localStorage.getItem("apiUrl") ||
-  "https://team-task-manager-ethara-production.up.railway.app";
+  "https://p01--team-task-manager-ethara--g2pc7f5phyjn.code.run";
 
 // ================= HELPERS =================
 
